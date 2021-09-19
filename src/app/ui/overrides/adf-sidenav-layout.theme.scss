@@ -1,0 +1,36 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  min-height: 0;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+@mixin adf-sidenav-layout-theme($theme) {
+  adf-sidenav-layout {
+    @include flex-column;
+
+    .mat-drawer-content {
+      @include flex-column;
+      overflow: auto;
+    }
+  }
+
+  .sidenav-layout {
+    @include flex-column;
+  }
+
+  .mat-drawer-content > div,
+  .mat-drawer-content > div > div {
+    @include flex-column;
+  }
+}

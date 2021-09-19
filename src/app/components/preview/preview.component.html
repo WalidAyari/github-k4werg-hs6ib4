@@ -1,0 +1,32 @@
+<ng-container *ngIf="nodeId">
+
+    <adf-viewer
+        [fileNodeId]="nodeId"
+        [allowNavigate]="navigateMultiple"
+        [allowSidebar]="true"
+        [allowPrint] ="true"
+        [canNavigateBefore]="previousNodeId"
+        [canNavigateNext]="nextNodeId"
+        [overlayMode]="true"
+        (print)="printFile()"
+        (showViewerChange)="onVisibilityChanged($event)"
+        (navigateBefore)="onNavigateBefore()"
+        (navigateNext)="onNavigateNext()">
+
+        <adf-viewer-sidebar>
+            <aca-info-drawer [node]="selection.file"></aca-info-drawer>
+        </adf-viewer-sidebar>
+
+        <adf-viewer-open-with *ifExperimental="'extensions'">
+            <ng-container *ngFor="let action of openWith; trackBy: trackByActionId">
+                <aca-toolbar-action type="menu-item" [entry]="action"></aca-toolbar-action>
+            </ng-container>
+        </adf-viewer-open-with>
+
+        <adf-viewer-more-actions>
+            <ng-container *ngFor="let action of viewerActions; trackBy: trackByActionId">
+                <aca-toolbar-action type="menu-item" [entry]="action"></aca-toolbar-action>
+            </ng-container>
+        </adf-viewer-more-actions>
+    </adf-viewer>
+</ng-container>
